@@ -1,10 +1,7 @@
 def solution(numbers):
-    numbers.sort()
-    new_num = numbers
-    for i in range(len(numbers)):
-        if numbers[i] >= 10:
-            new_num[i] = numbers[i] // (10 ** (len(numbers[i]) - 1))
-            num = num % (10 ** (len(num) - 1))
+    if sum(numbers) == 0:
+        return '0'
+    numbers = list(map(str, numbers))
+    numbers.sort(key=lambda x: x * 3, reverse=True)
 
-    answer = ''
-    return answer
+    return ''.join(numbers)
