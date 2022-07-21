@@ -2,14 +2,7 @@ while True:
     n = input()
     if n == '0':
         break
-    l = len(n)
-    check = 0
-    for i in range(l):
-        if n[i] == n[l-1-i]:
-            check += 1
-    if check == l:
-        print("yes")
+    elif n[::-1] == n:
+        print('yes')
     else:
-        print("no")
-    
-        
+        print('no')
