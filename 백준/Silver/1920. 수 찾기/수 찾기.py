@@ -4,20 +4,16 @@ def binary_search(A, b):
     while start <= end:
         mid = (start+end)//2
         if b == A[mid]:
-            return mid
+            return 1
         elif b > A[mid]:
             start = mid + 1
         else:
             end = mid - 1
-    return -1
+    return 0
 N = int(input())
 A = list(map(int, input().split()))
 M = int(input())
 B = list(map(int, input().split()))
 A.sort()
 for b in B:
-    res = binary_search(A, b)
-    if res == -1:
-        print(0)
-    else:
-        print(1)
+    print(binary_search(A, b))
