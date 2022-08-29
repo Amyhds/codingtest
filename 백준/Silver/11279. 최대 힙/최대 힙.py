@@ -5,9 +5,9 @@ que = []
 for _ in range(N):
     cmd = int(input())
     if cmd != 0:
-        heapq.heappush(que, (-cmd,cmd))
+        heapq.heappush(que, -cmd)
     else:
         if que:
-            print(heapq.heappop(que)[1])
+            print(-1*heapq.heappop(que))
         else:
             print(0)
