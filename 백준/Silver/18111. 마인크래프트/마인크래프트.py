@@ -3,8 +3,6 @@ input = sys.stdin.readline
 N, M, B = map(int, input().split())
 land = [list(map(int, input().split())) for _ in range(N)]
 T = 100000000000000
-res_time = 0
-res_height = 0
 Min = min(map(min, land))
 Max = max(map(max, land))
 for h in range(Min, Max+1):
@@ -18,8 +16,8 @@ for h in range(Min, Max+1):
             elif dif < 0:
                 p_cnt -= dif
     if m_cnt + B >= p_cnt:
-        res_time = m_cnt * 2 + p_cnt
-        if T >= res_time:
-            T = res_time
-            res_height = h
-print(T, res_height)
+        temp = m_cnt * 2 + p_cnt
+        if T >= temp:
+            T = temp
+            H = h
+print(T, H)
