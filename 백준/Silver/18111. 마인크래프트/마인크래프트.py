@@ -1,29 +1,25 @@
-#어렵다 답보고도 이해가 잘..
 import sys
 input = sys.stdin.readline
 N, M, B = map(int, input().split())
 land = [list(map(int, input().split())) for _ in range(N)]
-res = 0
-ans = 100000000000000000000
-for floor in range(257):
-    Max = 0
-    Min = 0
+T = 100000000000000
+res_time = 0
+res_height = 0
+Min = min(map(min, land))
+Max = max(map(max, land))
+for h in range(Min, Max+1):
+    p_cnt = 0
+    m_cnt = 0
     for i in range(N):
         for j in range(M):
-            if land[i][j] < floor:
-                Min += floor - land[i][j]
-            else:
-                Max += land[i][j] - floor
-    blocks = Max + B
-    if blocks < Min:
-        continue
-    time = 2 * Max + Min
-    if time <= ans:
-        ans = time
-        res = floor
-print(ans, res)
-
-    
-    
-
-           
+            dif = land[i][j] - h
+            if dif > 0:
+                m_cnt += dif
+            elif dif < 0:
+                p_cnt -= dif
+    if m_cnt + B >= p_cnt:
+        res_time = m_cnt * 2 + p_cnt
+        if T >= res_time:
+            T = res_time
+            res_height = h
+print(T, res_height)
