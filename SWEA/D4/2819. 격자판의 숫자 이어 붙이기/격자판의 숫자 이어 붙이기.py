@@ -1,13 +1,13 @@
-def DFS(idx, x, y, s):
+def DFS(x, y, s):
     s += arr[x][y]
-    if idx == 6:
+    if len(s) == 7:
         res.add(s)
         return
     for i in range(4):
         nx = x + d[i][0]
         ny = y + d[i][1]
         if 0 <= nx < 4 and 0 <= ny < 4:
-            DFS(idx+1, nx, ny, s)
+            DFS(nx, ny, s)
 
 T = int(input())
 for tc in range(1, T+1):
@@ -16,5 +16,5 @@ for tc in range(1, T+1):
     d = [(0, 1), (0, -1), (1, 0), (-1, 0)]
     for i in range(4):
         for j in range(4):
-            DFS(0, i, j, '')
+            DFS(i, j, '')
     print(f'#{tc} {len(res)}')
