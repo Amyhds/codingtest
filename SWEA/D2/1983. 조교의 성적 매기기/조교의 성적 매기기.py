@@ -1,16 +1,14 @@
 T = int(input())
-for test_case in range(1, T + 1):
+grade = ['A+', 'A0', 'A-', 'B+', 'B0', 'B-', 'C+', 'C0', 'C-', 'D0']
+for tc in range(1, T+1):
     N, K = map(int, input().split())
-    score = [list(map(int, input().split())) for _ in range(N)]
-    s_list = []
-    grade = ['A+', 'A0', 'A-', 'B+', 'B0', 'B-', 'C+', 'C0', 'C-', 'D0']
-    same = N // 10
+    scores = [list(map(int, input().split())) for _ in range(N)]
+    credit = []
     for i in range(N):
-        res = score[i][0] * (35/100) + score[i][1] * (45/100) + score[i][2] * (20/100)
-        s_list.append(res)
-    k_std = s_list[K-1]
-    s_list.sort(reverse = True)
-    k_index = s_list.index(k_std)
-    res = grade[k_index // same]
-    print('#' + str(test_case) + ' ' + res)
-    
+        credit.append(scores[i][0] * 0.35 + scores[i][1] * 0.45 + scores[i][2] * 0.2)
+    k_credit = credit[K-1]
+    credit.sort(reverse=True)
+    k_idx = credit.index(k_credit)
+    res = grade[k_idx//(N//10)]
+    print(f'#{tc} {res}')
+        
