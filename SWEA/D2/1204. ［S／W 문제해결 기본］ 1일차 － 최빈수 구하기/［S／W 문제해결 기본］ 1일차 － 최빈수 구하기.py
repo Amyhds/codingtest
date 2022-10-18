@@ -1,9 +1,10 @@
 T = int(input())
-for test_case in range(1, T + 1):
-    t= int(input())
-    score = list(map(int, input().split()))
+for _ in range(1, T+1):
+    tc = int(input())
     d = {}
-    for s in score:
-        d[s] = d.get(s, 0) + 1
-    res = [k for k,v in d.items() if max(d.values()) == v]
-    print(f'#{test_case} {max(res)}')
+    grade = list(map(int, input().split()))
+    for i in range(1000):
+        d[grade[i]] = d.get(grade[i], 0) + 1
+    freq = max(d.values())
+    temp = [key for key, value in d.items() if value == freq]
+    print(f'#{tc} {max(temp)}')
