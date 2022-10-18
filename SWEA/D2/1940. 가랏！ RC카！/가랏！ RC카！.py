@@ -1,24 +1,19 @@
 T = int(input())
-for test_case in range(1, T + 1):
+for tc in range(1, T+1):
     N = int(input())
+    m = 0
     v = 0
-    d = 0
     for _ in range(N):
-        ipt = input()
-        if len(ipt) > 2:
-        	c, a = map(int, ipt.split())
-        else:
-            c = int(ipt)
-        if c == 1:
-            v += a
-        elif c == 2:
-            if v >= a:
-                v -= a
+        cmd = input().split()
+        if len(cmd) > 1:
+            if int(cmd[0]) == 1:
+                v += int(cmd[1])
+                m += v
             else:
-                v = 0
+                v -= int(cmd[1])
+                if v < 0:
+                    v = 0
+                m += v
         else:
-            v += 0
-        d += v
-    print('#'+str(test_case)+' '+str(d))
-            
-            
+            m += v
+    print(f'#{tc} {m}')
