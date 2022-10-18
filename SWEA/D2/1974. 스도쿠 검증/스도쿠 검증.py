@@ -1,34 +1,33 @@
 T = int(input())
-for test in range(1, T+1):
+for tc in range(1, T+1):
     sudoku = [list(map(int, input().split())) for _ in range(9)]
     res = 1
-    #horizontal
+    #hzt
     for i in range(9):
-        if len(set(sudoku[i])) != 9:
-            res = 0
-            break            
-    #vertical
-        temp2 = set()
+        chk = [0] * 9
         for j in range(9):
-            temp2.add(sudoku[j][i])
-        if len(temp2) != 9:
-            res = 0
-            break                        
-    #3*3
-    x = 0
-    y = 0
-    while x <= 6 and y <= 6:
-        temp3 = set()
-        for i in range(x, x+3):
-            for j in range(y, y+3):
-                temp3.add(sudoku[i][j])
-        if len(temp3) != 9:
+            chk[sudoku[i][j] - 1] = 1
+        if sum(chk) != 9:
             res = 0
             break
-        y += 3
-        if y > 6:
-            y = 0
-            x += 3
-    print('#'+str(test)+' '+str(res))
-            
-                  
+    #vtc
+    if res == 1:
+        for i in range(9):
+            chk = [0] * 9
+            for j in range(9):
+                chk[sudoku[j][i] - 1] = 1
+            if sum(chk) != 9:
+                res = 0
+                break
+    #3*3
+    if res == 1:
+        for i in range(0, 9, 3):
+            for j in range(0, 9, 3):
+                chk = [0] * 9
+                for x in range(3):
+                    for y in range(3):
+                        chk[sudoku[i+x][j+y] - 1] = 1
+                if sum(chk) != 9:
+                    res = 0
+                    break
+    print(f'#{tc} {res}')
