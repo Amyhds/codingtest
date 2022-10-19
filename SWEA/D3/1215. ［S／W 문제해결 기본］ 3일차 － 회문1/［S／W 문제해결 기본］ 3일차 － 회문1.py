@@ -1,26 +1,21 @@
-for test_case in range(1, 11):
-    L = int(input())
-    h_arr = [input() for _ in range(8)]
-    v_arr = [[] for _ in range(8)]
+for tc in range(1, 11):
+    N = int(input())
+    arr = [input() for _ in range(8)]
+    res = 0
+    #hzt
     for i in range(8):
-        for j in range(8):
-            v_arr[i].append(h_arr[j][i])
-    lst = []
-    cnt = 0
-    #h
+        for j in range(8-N+1):
+            word = ''
+            for k in range(N):
+                word += arr[i][j+k]
+            if word == word[::-1]:
+                res += 1
+    #vtc
     for i in range(8):
-        for j in range(8):
-            if j <= 8 - L:
-                lst.append(h_arr[i][j:j+L])
-    #v            
-    for i in range(8):
-        for j in range(8):
-            if j <= 8 - L:
-                lst.append(v_arr[i][j:j+L])
-    for word in lst:
-        if word == word[::-1]:
-            cnt += 1
-    print(f'#{test_case} {cnt}')
-                
-                
-    
+        for j in range(8-N+1):
+            word = ''
+            for k in range(N):
+                word += arr[j+k][i]
+            if word == word[::-1]:
+                res += 1
+    print(f'#{tc} {res}')
