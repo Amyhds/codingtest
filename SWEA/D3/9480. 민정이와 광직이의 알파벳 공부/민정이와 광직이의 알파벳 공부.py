@@ -1,30 +1,27 @@
-#답보고 함..부분수열의 합(1182)랑 비슷하다 DFS
-def DFS(idx, used):
-    global res
-    
-    if idx == N:
-        s = ''
+def DFS(index, used):
+    global result
+    if index == N:
+        temp = ''
         for i in range(N):
             if used[i]:
-                s += words[i]
-        for i in range(ord('a'), ord('z') + 1):
-            if chr(i) not in s:
+                temp += words[i]
+        for j in range(ord('a'), ord('z')+1):
+            if chr(j) not in temp:
                 break
         else:
-            res += 1
+            result += 1
         return
-    # 사용한 경우
-    DFS(idx + 1, used)
-    used[idx] = 1
-    # 사용안한 경우
-    DFS(idx + 1, used)
-    used[idx] = 0
     
+    used[index] = 1
+    DFS(index+1, used)
+    used[index] = 0
+    DFS(index+1, used)
 
 T = int(input())
 for tc in range(1, T+1):
     N = int(input())
     words = [input() for _ in range(N)]
-    res = 0
-    DFS(0, [0]*N)
-    print(f'#{tc} {res}')
+    used = [0]*N
+    result = 0
+    DFS(0, used)    
+    print(f"#{tc} {result}")
