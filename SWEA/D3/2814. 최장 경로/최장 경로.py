@@ -1,15 +1,14 @@
 #흐음 잘 이해가 안간다
 def DFS(i, cnt):
     global max_L
+    if max_L < cnt:
+            max_L = cnt
     for j in range(1, N+1):
         if not visited[j] and graph[i][j]:
             visited[j] = 1 
             DFS(j, cnt + 1)
             visited[j] = 0
-    else:
-        if cnt > max_L:
-            max_L = cnt
-    
+
 T = int(input())
 for test_case in range(1, T+1):
     N, M = map(int, input().split())
