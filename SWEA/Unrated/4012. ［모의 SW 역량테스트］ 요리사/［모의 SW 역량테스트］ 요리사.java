@@ -1,13 +1,9 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.StringTokenizer;
 
-public class Solution {
+public class Solution_4012_요리사_한다솜 {
 
 	static int N;
 	static int[][] synergy;
@@ -22,26 +18,26 @@ public class Solution {
 
 		for (int i = 0; i < N - 1; i++) {
 			for (int j = i + 1; j < N; j++) {
-				if (isSelected[i] && isSelected[j]) {
+				if (isSelected[i] && isSelected[j]) { // 선택된 N/2개는 A의 재료
 					totalA += synergy[i][j] + synergy[j][i];
 				}
-				else if (!isSelected[i] && !isSelected[j]) {
+				if (!isSelected[i] && !isSelected[j]) { // 선택되지 않은 N/2개는 B의 재료
 					totalB += synergy[i][j] + synergy[j][i];
 				}
 			}
 		}
 
-		return Math.abs(totalA - totalB);
+		return Math.abs(totalA - totalB); // 차이 리턴
 
 	}
 
 	private static void comb(int cnt, int start) {
 		if (cnt == N / 2) {
-			min = Math.min(min, calDiff());
+			min = Math.min(min, calDiff()); // 최소 차이로 업데이트
 			return;
 		}
 		for (int i = start; i < N; i++) {
-			isSelected[i] = true;
+			isSelected[i] = true; // N/2개를 선택하고 그것을 기록해야 함
 			comb(cnt + 1, i + 1);
 			isSelected[i] = false;
 		}
@@ -56,7 +52,7 @@ public class Solution {
 
 			N = Integer.parseInt(bf.readLine());
 			synergy = new int[N][N];
-			isSelected = new boolean[N];
+			isSelected = new boolean[N]; // 한 음식에 들어가는 재료 N/2개의 선택 여부를 저장할 배열
 
 			for (int i = 0; i < N; i++) {
 				StringTokenizer st = new StringTokenizer(bf.readLine());
