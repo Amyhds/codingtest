@@ -1,57 +1,112 @@
-# 답 참고..
-from collections import deque
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
-def findMine(near):
-    q = deque(near)
-    while q:
-        x, y = q.popleft()
-        arr[x][y] = 'o'
-        near2 = []
-        for i in range(8):
-            nx = x + d[i][0]
-            ny = y + d[i][1]
-            if 0 <= nx < N and 0 <= ny < N:
-                if arr[nx][ny] == '*':
-                    break
-                elif arr[nx][ny] == '.':
-                    near2.append((nx, ny))
-        else:
-            findMine(near2)
+public class Solution { // 파핑파핑 지뢰찾기
 
+	static int N;
+	static char[][] bomb;
+	static int click;
+	static boolean isZero;
+	static int[][] dir = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 }, { 1, 1 }, { -1, -1 }, { 1, -1 }, { -1, 1 } };
 
-def findZero(x, y):
-    global cnt
-    near = []
-    for i in range(8):
-        nx = x + d[i][0]
-        ny = y + d[i][1]
-        if 0 <= nx < N and 0 <= ny < N:
-            if arr[nx][ny] == '*':
-                break
-            elif arr[nx][ny] == '.':
-                near.append((nx, ny))
-    else:
-        if near:
-            arr[x][y] = 'o'
-            cnt += 1
-            findMine(near)
-def rest():
-    global cnt
-    # 폭탄으로 막혀잇는 곳???
-    for i in range(N):
-        for j in range(N):
-            if arr[i][j] == ".":
-                cnt += 1
+	private static void findZero(int x, int y) {
+		
+		Queue<int[]> que = new ArrayDeque<int[]>();
+		isZero = true;
+		
+		for (int i = 0; i < 8; i++) {
+			int nx = x + dir[i][0];
+			int ny = y + dir[i][1];
+			if (nx < 0 || nx >= N || ny < 0 || ny >= N) 
+				continue;
+			if (bomb[nx][ny] == '*') {
+				isZero = false;
+				break;
+			}
+			if (bomb[nx][ny] == '.') {
+				que.offer(new int[] {nx, ny});
+			}
+		}
+		if (isZero && !que.isEmpty()) {
+			bomb[x][y] = 'o';
+			click++;
+			bfs(que);
+		}
+	}
+	
+	private static void bfs(Queue<int[]> que) {
 
-T = int(input())
-for tc in range(1, T + 1):
-    N = int(input())
-    arr = [list(input()) for _ in range(N)]
-    d = [(0, 1), (0, -1), (1, 0), (-1, 0), (1, 1), (-1, -1), (-1, 1), (1, -1)]
-    cnt = 0
-    for i in range(N):
-        for j in range(N):
-            if arr[i][j] == ".":
-                findZero(i, j)
-    rest()
-    print(f'#{tc} {cnt}')
+		while (!que.isEmpty()) {
+			
+			int[] temp = que.poll();
+			int x = temp[0];
+			int y = temp[1];
+			bomb[x][y] = 'o';
+			isZero = true;
+			Queue<int[]> que2 = new ArrayDeque<int[]>();
+			for (int i = 0; i < 8; i++) {
+				int nx = x + dir[i][0];
+				int ny = y + dir[i][1];
+				if (nx < 0 || nx >= N || ny < 0 || ny >= N) 
+					continue;
+				if (bomb[nx][ny] == '*') {
+					isZero = false;
+					break;
+				}
+				if (bomb[nx][ny] == '.') {
+					que2.offer(new int[] {nx, ny});
+				}
+			}
+			if(isZero) {
+				bfs(que2);
+			}
+			
+		}
+		
+	}
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+
+		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+		int T = Integer.parseInt(bf.readLine());
+
+		for (int test_case = 1; test_case <= T; test_case++) {
+			N = Integer.parseInt(bf.readLine());
+			bomb = new char[N][N];
+			click = 0;
+			for (int i = 0; i < N; i++) {
+				StringTokenizer st = new StringTokenizer(bf.readLine());
+				String temp = st.nextToken();
+				for (int j = 0; j < N; j++) {
+					bomb[i][j] = temp.charAt(j);
+				}
+			}
+			
+			// 0인 곳 찾기
+			for (int i = 0; i < N; i++) {
+				for (int j = 0; j < N; j++) {
+					if (bomb[i][j] == '.') {
+						findZero(i, j);
+					}
+				}
+			}
+			
+			// 나머지 부분
+			for (int i = 0; i < N; i++) {
+				for (int j = 0; j < N; j++) {
+					if (bomb[i][j] == '.') {
+						click++;
+					}
+				}
+			}
+			
+			System.out.println("#" + test_case + " " + click);
+		}
+	}
+
+}
