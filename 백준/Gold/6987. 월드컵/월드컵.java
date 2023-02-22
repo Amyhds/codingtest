@@ -20,8 +20,8 @@ public class Main {
 		}
 		int a = t1[cnt];
 		int b = t2[cnt];
-		if(example[a][0] < 0 || example[b][0] < 0 || example[a][1] < 0 || example[b][1] < 0 || example[a][2] < 0 || example[b][2] < 0 )
-			return;
+//		if(example[a][0] < 0 || example[b][0] < 0 || example[a][1] < 0 || example[b][1] < 0 || example[a][2] < 0 || example[b][2] < 0 )
+//			return;
 		if (example[a][0] > 0 && example[b][2] > 0) {
 			example[a][0]--;
 			example[b][2]--;
