@@ -67,7 +67,7 @@ public class Solution {
 		switch (cmd) {
 		case 'U':
 			currDir = '^';
-			if (isValid(currX - 1, currY) && map[currX - 1][currY] == '.') {
+			if (isValid(currX - 1, currY)) {
 				map[currX - 1][currY] = currDir;
 				map[currX][currY] = '.';
 				currX -= 1;
@@ -76,7 +76,7 @@ public class Solution {
 			break;
 		case 'D':
 			currDir = 'v';
-			if (isValid(currX + 1, currY) && map[currX + 1][currY] == '.') {
+			if (isValid(currX + 1, currY)) {
 				map[currX + 1][currY] = currDir;
 				map[currX][currY] = '.';
 				currX += 1;
@@ -85,7 +85,7 @@ public class Solution {
 			break;
 		case 'L':
 			currDir = '<';
-			if (isValid(currX, currY - 1) && map[currX][currY - 1] == '.') {
+			if (isValid(currX, currY - 1)) {
 				map[currX][currY - 1] = currDir;
 				map[currX][currY] = '.';
 				currY -= 1;
@@ -94,7 +94,7 @@ public class Solution {
 			break;
 		case 'R':
 			currDir = '>';
-			if (isValid(currX, currY + 1) && map[currX][currY + 1] == '.') {
+			if (isValid(currX, currY + 1)) {
 				map[currX][currY + 1] = currDir;
 				map[currX][currY] = '.';
 				currY += 1;
