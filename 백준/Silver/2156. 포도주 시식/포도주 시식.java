@@ -22,9 +22,9 @@ public class Main {
 
 		for (int i = 1; i < N; i++) {
 			if (i == 1) {
-				dp[i] = dp[i - 1] + glasses[i];
+				dp[1] = dp[0] + glasses[1];
 			} else if (i == 2) {
-				dp[i] = Math.max(dp[i - 1], Math.max(glasses[i - 2] + glasses[i], glasses[i - 1] + glasses[i]));
+				dp[2] = Math.max(dp[1], Math.max(glasses[0] + glasses[2], glasses[1] + glasses[2]));
 			} else {
 				dp[i] = Math.max(dp[i - 1], Math.max(dp[i - 2] + glasses[i], dp[i - 3] + glasses[i - 1] + glasses[i]));
 			}
