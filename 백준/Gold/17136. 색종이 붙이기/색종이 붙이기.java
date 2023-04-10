@@ -46,11 +46,11 @@ public class Main {
 		}
 
 		if (paper[x][y] == 1) {
-			for (int r = 1; r <= 5; r++) {
+			for (int r = 5; r >= 1; r--) {
 				if (limit[r] > 0 && isAttachable(x, y, r)) {
 					change(x, y, r, 0);
 					limit[r]--;
-					dfs(x, y + 1, cnt + 1);
+					dfs(x, y + r, cnt + 1);
 					change(x, y, r, 1);
 					limit[r]++;
 				}
