@@ -71,3 +71,9 @@ Empty
 
 
 > 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
+
+---
+## 풀이
+폰켓몬과 마찬가지로 HashMap으로 풀어야 하는 문제
+다만 맵에서 key값을 통해 value를 변경해야 하므로, java.util.Map의 EntrySet()이라는 메소드를 썼지만
+다른 사람의 풀이를 보니 그냥 HashMap의 KeySet()을 사용하여 value를 얻어오면 되는 것이었다!
