@@ -76,5 +76,17 @@ Empty
 6마리의 폰켓몬이 있으므로, 3마리의 폰켓몬을 골라야 합니다.<br>
 가장 많은 종류의 폰켓몬을 고르기 위해서는 3번 폰켓몬 한 마리와 2번 폰켓몬 두 마리를 고르거나, 혹은 3번 폰켓몬 두 마리와 2번 폰켓몬 한 마리를 고르면 됩니다. 따라서 최대 고를 수 있는 폰켓몬 종류의 수는 2입니다.</p>
 
-
 > 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
+
+---
+## 풀이
+자바의 HashMap을 제대로 알고 있다면 풀기 매우 쉬운 문제
+```
+import java.util.*;
+
+HashMap<Integer, Integer> hm = new HashMap<>();
+
+hm.put(x, hm.getOrDefault(x, 0) + 1);
+```
+getOrDefault(x, y)는 x라는 키에 해당하는 값을 가져오되, 해당하는 값이 없다면 0으로 설정하라는 뜻
+
