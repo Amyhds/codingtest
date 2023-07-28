@@ -102,3 +102,10 @@ face에 해당하는 의상이 crow_mask, blue_sunglasses, smoky_makeup이므로
 
 
 > 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
+
+---
+## 풀이
+옷 종류를 키로, 종류에 따른 개수를 값으로 저장  
+head -> a, b가 있고 eye -> c가 있다면  
+(a, b를 각각 입거나 아예 안 입는 경우) * (c를 입거나 아예 안 입는 경우) - (a, b, c 모두 안 입는 경우) 가 정답이다  
+3 * 2 - 1 = 5
