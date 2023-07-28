@@ -78,3 +78,16 @@ Empty
 
 
 > 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
+
+---
+## 풀이
+어떻게 해시로 풀어야하는지 몰라서 뇌정지가 왔다...
+### 첫번째 풀이
+해시를 사용하지 않고 그냥 startsWith 메서드를 쓰는 방법
+### 두번째 풀이
+해시에 번호를 키로 저장하고  
+for문을 돌면서 하나씩 꺼낸 다음에  
+다시 for문을 돌면서 번호 하나를 자릿수 1개, 2개, ... 늘려가며  
+hm.containsKey(phone_book[i].substring(0,j))  
+이렇게 키로 contain하고 있는지를 확인하는 방법  
+-> 이런 생각을 못했다...
