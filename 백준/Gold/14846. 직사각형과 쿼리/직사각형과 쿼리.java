@@ -25,6 +25,7 @@ public class Main {
             }
         }
         int Q = Integer.parseInt(bf.readLine());
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < Q; i++) {
             StringTokenizer st = new StringTokenizer(bf.readLine());
             int x1 = Integer.parseInt(st.nextToken());
@@ -40,8 +41,9 @@ public class Main {
                     answer++;
                 }
             }
-            System.out.println(answer);
+            sb.append(answer + "\n");
         }
+        System.out.println(sb);
 
     }
 
