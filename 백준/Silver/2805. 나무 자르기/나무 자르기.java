@@ -16,11 +16,14 @@ public class Main {
         M = Integer.parseInt(st.nextToken());
         trees = new int[N];
         st = new StringTokenizer(bf.readLine());
+        max = 0;
         for (int i = 0; i < N; i++) {
             trees[i] = Integer.parseInt(st.nextToken());
+            if (max < trees[i]) {
+                max = trees[i];
+            }
         }
-        Arrays.sort(trees);
-        max = trees[N - 1];
+
         answer = 0;
         int start = 0;
         int end = max;
