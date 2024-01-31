@@ -5,37 +5,32 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-	static int N;
-	static int M;
-	static int[] numbers;
+    static int N, M;
+    static int[] selected;
 
-	private static void comb(int cnt, int start) {
-		
-		if (cnt == M) {
-			for (int i = 0; i < M; i++) {
-				System.out.print(numbers[i] + " ");
-			}
-			System.out.println();
-			return;
-		}
-		
-		for (int i = start; i <= N; i++) {
-			numbers[cnt] = i;
-			comb(cnt + 1, i + 1);
-		}
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(bf.readLine());
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+        selected = new int[M];
+        permutation(0, 1);
+    }
 
-	}
+    public static void permutation(int cnt, int start) {
+        if (cnt == M) {
+            for (int num : selected
+            ) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+            return;
+        }
 
-	public static void main(String[] args) throws IOException {
-
-		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(bf.readLine());
-
-		N = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
-
-		numbers = new int[M];
-		comb(0, 1);
-	}
+        for (int i = start; i <= N; i++) {
+            selected[cnt] = i;
+            permutation(cnt + 1, i + 1);
+        }
+    }
 
 }
