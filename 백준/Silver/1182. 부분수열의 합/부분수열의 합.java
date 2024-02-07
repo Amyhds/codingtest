@@ -6,7 +6,7 @@ import java.util.StringTokenizer;
 public class Main {
 
     static int N, S, answer;
-    static int[] array, selected;
+    static int[] array;
 
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
@@ -18,27 +18,18 @@ public class Main {
         for (int i = 0; i < N; i++) {
             array[i] = Integer.parseInt(st.nextToken());
         }
-        for (int size = 1; size <= N; size++) {
-            int[] selected = new int[size];
-            select(0, 0, size, selected);
-        }
-        System.out.println(answer);
+        search(0, 0);
+        System.out.println(S == 0 ? answer - 1 : answer);
     }
 
-    public static void select(int cnt, int start, int size, int[] selected) {
-        if (cnt == size) {
-            int result = 0;
-            for (int i = 0; i < size; i++) {
-                result += selected[i];
-            }
-            if (result == S) {
+    public static void search(int cnt, int sum) {
+        if (cnt == N) {
+            if (sum == S) {
                 answer++;
             }
             return;
         }
-        for (int i = start; i < N; i++) {
-            selected[cnt] = array[i];
-            select(cnt + 1, i + 1, size, selected);
-        }
+        search(cnt + 1, sum);
+        search(cnt + 1, sum + array[cnt]);
     }
 }
