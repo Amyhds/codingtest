@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashSet;
 
 public class Main {
 
@@ -23,7 +22,6 @@ public class Main {
     }
 
     public static long solution(int cnt, int whole, int half) {
-//        System.out.println(cnt + " " + whole + " " + half);
         if (cnt == 2 * N) {
             return 1;
         }
