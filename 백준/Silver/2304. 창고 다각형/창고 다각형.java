@@ -8,26 +8,35 @@ import java.util.TreeSet;
 
 public class Main {
 
+    static int N;
+    static int[][] arr;
+    static int answer;
+
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(bf.readLine());
-        int[][] arr = new int[N][2];
+        N = Integer.parseInt(bf.readLine());
+        arr = new int[N][2];
+        StringTokenizer st = null;
         for (int i = 0; i < N; i++) {
-            StringTokenizer st = new StringTokenizer(bf.readLine());
+            st = new StringTokenizer(bf.readLine());
             arr[i][0] = Integer.parseInt(st.nextToken());
             arr[i][1] = Integer.parseInt(st.nextToken());
         }
-        Arrays.sort(arr, Comparator.comparingInt(o -> o[0]));
-        int max = 0;
+        Arrays.sort(arr, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return o1[0] - o2[0];
+            }
+        });
+        int maxHeight = 0;
         int maxIndex = 0;
         for (int i = 0; i < N; i++) {
-            if (max < arr[i][1]) {
-                max = arr[i][1];
+            if (maxHeight < arr[i][1]) {
+                maxHeight = arr[i][1];
                 maxIndex = i;
             }
         }
-        int answer = 0;
-        for (int i = 0; i <= maxIndex; i++) {
+        for (int i = 0; i < maxIndex; i++) {
             for (int j = i + 1; j <= maxIndex; j++) {
                 if (arr[i][1] <= arr[j][1]) {
                     answer += (arr[j][0] - arr[i][0]) * arr[i][1];
@@ -35,7 +44,6 @@ public class Main {
                 }
             }
         }
-
         for (int i = N - 1; i > maxIndex; i--) {
             for (int j = i - 1; j >= maxIndex; j--) {
                 if (arr[i][1] <= arr[j][1]) {
@@ -44,7 +52,7 @@ public class Main {
                 }
             }
         }
-        System.out.println(answer + max);
+        System.out.println(answer + maxHeight);
     }
 
 }
