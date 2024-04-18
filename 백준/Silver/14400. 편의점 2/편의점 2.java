@@ -2,39 +2,34 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.StringTokenizer;
- 
+
 public class Main {
- 
+
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
- 
-        int n = Integer.parseInt(st.nextToken());
- 
-        int[] x = new int[n];
-        int[] y = new int[n];
- 
-        for (int i = 0; i < n; i++) {
-            st = new StringTokenizer(br.readLine(), " ");
-            x[i] = Integer.parseInt(st.nextToken());
-            y[i] = Integer.parseInt(st.nextToken());
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(bf.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int[] clientsX = new int[N];
+        int[] clientsY = new int[N];
+        for (int i = 0; i < N; i++) {
+            st = new StringTokenizer(bf.readLine());
+            int x = Integer.parseInt(st.nextToken());
+            int y = Integer.parseInt(st.nextToken());
+            clientsX[i] = x;
+            clientsY[i] = y;
         }
- 
-        Arrays.sort(x);
-        Arrays.sort(y);
- 
-        int medianX = x[n / 2];
-        int medianY = y[n / 2];
- 
-        long minXDistance = 0;
-        long minYDistance = 0;
- 
-        for (int i = 0; i < n; i++) {
-            minXDistance += Math.abs(medianX - x[i]);
-            minYDistance += Math.abs(medianY - y[i]);
+        Arrays.sort(clientsX);
+        Arrays.sort(clientsY);
+        int cvsX = clientsX[N / 2];
+        int cvsY = clientsY[N / 2];
+        long answer = 0;
+        for (int i = 0; i < N; i++) {
+            answer += Math.abs(clientsX[i] - cvsX);
+            answer += Math.abs(clientsY[i] - cvsY);
         }
- 
-        System.out.print(minXDistance + minYDistance);
+        System.out.println(answer);
     }
+
 }
