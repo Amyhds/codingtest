@@ -6,34 +6,31 @@ import java.util.StringTokenizer;
 public class Main {
 
     static int N, M;
-    static int[] selected;
+    static int[] seq;
     static StringBuilder sb;
 
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(bf.readLine());
-        sb = new StringBuilder();
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
-        selected = new int[M];
-        permutation(0);
-        System.out.println(sb);
+        seq = new int[M];
+        sb = new StringBuilder();
+        recur(0);
+        System.out.println(sb.toString());
     }
 
-    public static void permutation(int cnt) {
+    public static void recur(int cnt) {
         if (cnt == M) {
-            for (int num : selected
-            ) {
-                sb.append(num + " ");
+            for (int num : seq) {
+                sb.append(num).append(" ");
             }
             sb.append("\n");
             return;
         }
-
         for (int i = 1; i <= N; i++) {
-            selected[cnt] = i;
-            permutation(cnt + 1);
+            seq[cnt] = i;
+            recur(cnt + 1);
         }
     }
-
 }
