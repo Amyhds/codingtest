@@ -1,26 +1,23 @@
 class Solution {
-    static int N, answer, target;
     static int[] numbers;
+    static int target, answer;
     
     public int solution(int[] numbers, int target) {
         answer = 0;
         this.numbers = numbers;
         this.target = target;
-        N = numbers.length;
-        dfs(0, 0);
+        recur(0, 0);
         return answer;
     }
     
-    public void dfs(int cnt, int sum) {
-        if (cnt == N) {
-            if (sum == target) {
+    public void recur(int cnt, int curr) {
+        if (cnt == numbers.length) {
+            if (curr == target) {
                 answer++;
             }
             return;
         }
-        dfs(cnt + 1, sum + numbers[cnt]);
-        dfs(cnt + 1, sum - numbers[cnt]);
+        recur(cnt + 1, curr - numbers[cnt]);
+        recur(cnt + 1, curr + numbers[cnt]);
     }
-    
-    
 }
